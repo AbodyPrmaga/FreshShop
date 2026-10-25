@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>إدارة فريش</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&family=Changa:wght@500;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html"><img src="images/logo.jpg" alt="فريش"><span>فريش <small>لوحة
+          الإدارة</small></span></a>
+    <button id="logoutButton" class="button button-light hidden"><i class="fa-solid fa-right-from-bracket"></i> تسجيل
+      الخروج</button>
+  </header>
+
+  <main class="page">
+    <section class="login-card" id="loginSection">
+      <div class="round-icon"><i class="fa-solid fa-user-shield"></i></div>
+      <h1>تسجيل دخول الإدارة</h1>
+      <p>سجّل الدخول لإدارة المنتجات والأسعار والتوفر.</p>
+      <form id="loginForm">
+        <label>اسم المستخدم<input name="username" value="admin" required autocomplete="username"></label>
+        <label>كلمة المرور<input name="password" type="password" value="fresh123" required
+            autocomplete="current-password"></label>
+        <button class="button button-green" type="submit">دخول لوحة الإدارة</button>
+        <p class="message" id="loginMessage"></p>
+      </form>
+
+    </section>
+
+    <section id="dashboardSection" class="hidden">
+      <div class="page-heading">
+        <div>
+          <h1>إدارة المنتجات</h1>
+          <p>أضف المنتجات وعدّلها أو احذفها. التغييرات تظهر على الموقع مباشرة.</p>
+        </div>
+        <button id="newProductButton" class="button button-yellow"><i class="fa-solid fa-plus"></i> منتج جديد</button>
+      </div>
+      <div class="stats">
+        <article><span>إجمالي المنتجات</span><strong id="totalProducts">0</strong></article>
+        <article><span>متاح للبيع</span><strong id="availableProducts">0</strong></article>
+        <article><span>غير متاح</span><strong id="unavailableProducts">0</strong></article>
+      </div>
+
+      <section class="editor hidden" id="editorSection">
+        <div class="editor-heading">
+          <h2 id="editorTitle">إضافة منتج</h2><button id="cancelEditButton" class="icon-button" aria-label="إغلاق"><i
+              class="fa-solid fa-xmark"></i></button>
+        </div>
+        <form id="productForm">
+          <input type="hidden" name="id">
+          <div class="form-grid">
+            <label>اسم المنتج<input name="name" required maxlength="150" placeholder="مثال: صدور فراخ"></label>
+            <label>الوزن أو الحجم<input name="weight" required maxlength="100" placeholder="مثال: 1 كيلو"></label>
+            <label>السعر بالجنيه<input name="price" type="number" min="0" step="0.01" required
+                placeholder="150"></label>
+            <label>صورة المنتج
+              <input name="image_file" type="file" accept="image/*">
+            </label>
+
+            <div id="imagePreviewContainer" hidden>
+              <img id="imagePreview" alt="معاينة صورة المنتج" style="max-width: 180px; border-radius: 10px;">
+            </div>
+          </div>
+          <label class="check-label"><input name="available" type="checkbox" checked> المنتج متاح للبيع</label>
+          <div class="form-actions"><button class="button button-green" type="submit">حفظ المنتج</button><button
+              class="button button-light" type="button" id="cancelEditButton2">إلغاء</button></div>
+          <p class="message" id="formMessage"></p>
+        </form>
+      </section>
+
+      <section class="products-panel">
+        <div class="panel-heading">
+          <h2>المنتجات الحالية</h2><button class="button button-light" id="refreshButton"><i
+              class="fa-solid fa-rotate"></i> تحديث</button>
+        </div>
+        <div id="productsList" class="products-list"></div>
+      </section>
+    </section>
+    <p class="global-message" id="globalMessage" role="status"></p>
+  </main>
+  <script src="js/config.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+
+</html>

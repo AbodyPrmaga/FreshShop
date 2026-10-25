@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>فريش | دجاج طازج مبرد ومتبل - فارسكور ودمياط</title>
+<meta name="description" content="دجاج طازج مبرد ومتبل بجميع أنواعه. فريش على أصوله. فرع فارسكور وفرع دمياط. اطلب من الموقع عبر واتساب.">
+<meta name="theme-color" content="#145a24">
+<link rel="icon" href="images/logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&family=Changa:wght@500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="header" id="top">
+  <div class="container header__in">
+    <a href="#top" class="brand" aria-label="فريش">
+      <img src="images/logo.jpg" alt="شعار فريش" width="52" height="52">
+      <span>فريش</span>
+    </a>
+    <nav class="nav" id="nav" aria-label="القائمة الرئيسية">
+      <a href="#products">المنتجات</a>
+      <a href="#preorder">طلب مسبق</a>
+      <a href="#seasonal">سمان وبط</a>
+      <a href="#branches">الفروع</a>
+      <a href="#feedback">شكاوى واقتراحات</a>
+    </nav>
+    <div class="header__actions">
+      <button class="cart-btn" id="openCart" aria-label="فتح السلة">
+        <i class="fa-solid fa-basket-shopping"></i>
+        <span class="cart-btn__count" id="cartCount">0</span>
+      </button>
+      <button class="burger" id="burger" aria-label="القائمة" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container hero__in">
+      <div class="hero__text">
+        <span class="status" id="status"><i class="fa-solid fa-circle"></i> <b id="statusText">...</b></span>
+        <h1>دجاج طازج مبرد ومتبل بجميع أنواعه</h1>
+        <p class="hero__sub">فريش على أصوله. اختار منتجاتك، وابعت طلبك على واتساب، واستلمه من أقرب فرع.</p>
+        <div class="hero__cta">
+          <a href="#products" class="btn btn--yellow"><i class="fa-solid fa-drumstick-bite"></i> شوف المنتجات</a>
+          <a href="https://wa.me/201501701563" class="btn btn--ghost" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> كلمنا على واتساب</a>
+        </div>
+        <ul class="hero__facts">
+          <li><i class="fa-solid fa-snowflake"></i> مبرد وطازج</li>
+          <li><i class="fa-solid fa-leaf"></i> 100% طبيعي</li>
+          <li><i class="fa-solid fa-clock"></i> من 8 صباحًا حتى 12 منتصف الليل</li>
+        </ul>
+      </div>
+      <div class="hero__logo">
+        <img src="images/logo.jpg" alt="شعار فريش - دجاجة تشير بعلامة ممتاز" width="420" height="470">
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="products">
+    <div class="container">
+      <div class="section__head">
+        <h2>منتجاتنا</h2>
+        <p>أسعار ثابتة وأوزان واضحة. أضف للسلة وأرسل الطلب بضغطة واحدة.</p>
+      </div>
+      <div class="grid" id="productGrid"></div>
+    </div>
+  </section>
+
+  <section class="section section--tint" id="preorder">
+    <div class="container two">
+      <div>
+        <div class="section__head section__head--start">
+          <h2>طلب مسبق</h2>
+          <p>دبابيس فراخ وأي حاجة تخطر على بالك. الأصناف دي بتتجهز بعد طلبك، فاطلبها قبلها بوقت.</p>
+        </div>
+        <ul class="ticks">
+          <li><i class="fa-solid fa-circle-check"></i> دبابيس فراخ</li>
+          <li><i class="fa-solid fa-circle-check"></i> أي صنف أو تقطيع خاص تحتاجه</li>
+          <li><i class="fa-solid fa-circle-check"></i> نؤكد لك السعر والموعد على واتساب</li>
+        </ul>
+      </div>
+      <form class="card form" id="preorderForm">
+        <label>اسمك
+          <input name="name" required autocomplete="name" placeholder="الاسم">
+        </label>
+        <label>تفاصيل الطلب
+          <textarea name="details" required rows="4" placeholder="مثال: دبابيس فراخ، 6 قطع، يوم الخميس"></textarea>
+        </label>
+        <button class="btn btn--green" type="submit"><i class="fa-brands fa-whatsapp"></i> أرسل الطلب المسبق</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="section" id="seasonal">
+    <div class="container">
+      <div class="section__head">
+        <h2>سمان وبط</h2>
+        <p>بيوصلونا في فترات محددة، وسعرهم بيتغير حسب السوق، فمفيش موعد أو سعر ثابت.</p>
+      </div>
+      <div class="seasonal">
+        <article class="seasonal__item">
+          <div class="seasonal__icon"><i class="fa-solid fa-feather-pointed"></i></div>
+          <h3>سمان</h3>
+          <p>السعر حسب التوفر</p>
+        </article>
+        <article class="seasonal__item">
+          <div class="seasonal__icon"><i class="fa-solid fa-dove"></i></div>
+          <h3>بط</h3>
+          <p>السعر حسب التوفر</p>
+        </article>
+        <div class="seasonal__ask">
+          <i class="fa-solid fa-circle-info"></i>
+          <p>اسأل عن المتاح اليوم وسعره قبل ما تيجي.</p>
+          <a class="btn btn--green" target="_blank" rel="noopener" id="askSeasonal" href="#"><i class="fa-brands fa-whatsapp"></i> اسأل عن السمان والبط</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--green" id="branches">
+    <div class="container">
+      <div class="section__head section__head--light">
+        <h2>فروعنا ومواعيدنا</h2>
+        <p>مفتوح يوميًا من 8 صباحًا حتى 12 منتصف الليل.</p>
+      </div>
+      <div class="branches">
+        <article class="branch">
+          <span class="branch__tag">الفرع الرئيسي</span>
+          <h3>فارسكور</h3>
+          <p><i class="fa-solid fa-location-dot"></i> بجوار التأمينات الاجتماعية، خلف مستشفى الحي وبجوار مستشفى الشناوي.</p>
+          <a class="link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%D9%81%D8%A7%D8%B1%D8%B3%D9%83%D9%88%D8%B1+%D8%A7%D9%84%D8%AA%D8%A3%D9%85%D9%8A%D9%86%D8%A7%D8%AA+%D8%A7%D9%84%D8%A7%D8%AC%D8%AA%D9%85%D8%A7%D8%B9%D9%8A%D8%A9"><i class="fa-solid fa-map-location-dot"></i> افتح على الخريطة</a>
+        </article>
+        <article class="branch">
+          <span class="branch__tag">الفرع الثاني</span>
+          <h3>دمياط</h3>
+          <p><i class="fa-solid fa-location-dot"></i> باب الحرس، أمام مسجد النور.</p>
+          <a class="link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%D9%85%D8%B3%D8%AC%D8%AF+%D8%A7%D9%84%D9%86%D9%88%D8%B1+%D8%A8%D8%A7%D8%A8+%D8%A7%D9%84%D8%AD%D8%B1%D8%B3+%D8%AF%D9%85%D9%8A%D8%A7%D8%B7"><i class="fa-solid fa-map-location-dot"></i> افتح على الخريطة</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="feedback">
+    <div class="container two">
+      <div>
+        <div class="section__head section__head--start">
+          <h2>شكاوى واقتراحات</h2>
+          <p>رأيك بيحسّن الخدمة. اكتب لنا وهيوصلنا مباشرة على واتساب.</p>
+        </div>
+        <a class="link link--big" href="https://wa.me/201501701563" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> <span dir="ltr">+20 15 01701563</span></a>
+      </div>
+      <form class="card form" id="feedbackForm">
+        <label>اسمك
+          <input name="name" required autocomplete="name" placeholder="الاسم">
+        </label>
+        <label>النوع
+          <select name="type">
+            <option>شكوى</option>
+            <option>اقتراح</option>
+          </select>
+        </label>
+        <label>رسالتك
+          <textarea name="msg" required rows="4" placeholder="اكتب هنا"></textarea>
+        </label>
+        <button class="btn btn--green" type="submit"><i class="fa-solid fa-paper-plane"></i> أرسل</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container footer__in">
+    <div class="brand brand--light">
+      <img src="images/logo.jpg" alt="" width="44" height="44">
+      <span>فريش</span>
+    </div>
+    <p>دجاج طازج مبرد ومتبل بجميع أنواعه. فريش على أصوله.</p>
+    <small>© <span id="year"></span> فريش. جميع الحقوق محفوظة.</small>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/201501701563" target="_blank" rel="noopener" aria-label="واتساب"><i class="fa-brands fa-whatsapp"></i></a>
+
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer" aria-label="سلة الطلب" aria-hidden="true">
+  <div class="drawer__head">
+    <h3><i class="fa-solid fa-basket-shopping"></i> سلة الطلب</h3>
+    <button class="icon-btn" id="closeCart" aria-label="إغلاق"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="drawer__body" id="cartBody"></div>
+  <div class="drawer__foot" id="cartFoot">
+    <div class="total"><span>الإجمالي</span><b id="cartTotal">0 جنيه</b></div>
+    <input id="custName" placeholder="اسمك" autocomplete="name">
+    <select id="custBranch" aria-label="الفرع">
+      <option>الاستلام من فرع فارسكور</option>
+      <option>الاستلام من فرع دمياط</option>
+    </select>
+    <button class="btn btn--green btn--block" id="sendOrder"><i class="fa-brands fa-whatsapp"></i> أرسل الطلب على واتساب</button>
+  </div>
+</aside>
+
+<script src="js/config.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>
