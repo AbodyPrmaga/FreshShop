@@ -27,9 +27,8 @@
       <h1>تسجيل دخول الإدارة</h1>
       <p>سجّل الدخول لإدارة المنتجات والأسعار والتوفر.</p>
       <form id="loginForm">
-        <label>اسم المستخدم<input name="username" value="admin" required autocomplete="username"></label>
-        <label>كلمة المرور<input name="password" type="password" value="fresh123" required
-            autocomplete="current-password"></label>
+        <label>اسم المستخدم<input name="username" required autocomplete="username"></label>
+        <label>كلمة المرور<input name="password" type="password" required autocomplete="current-password"></label>
         <button class="button button-green" type="submit">دخول لوحة الإدارة</button>
         <p class="message" id="loginMessage"></p>
       </form>
@@ -50,6 +49,24 @@
         <article><span>غير متاح</span><strong id="unavailableProducts">0</strong></article>
       </div>
 
+      <section class="editor account-editor">
+        <div class="editor-heading">
+          <h2>إعدادات حساب الإدارة</h2>
+        </div>
+        <form id="accountForm">
+          <div class="form-grid">
+            <label>اسم المستخدم الجديد<input name="username" minlength="3" maxlength="50"
+                autocomplete="username" placeholder="اتركه فارغًا دون تغيير"></label>
+            <label>كلمة المرور الحالية<input name="current_password" type="password" required
+                autocomplete="current-password"></label>
+            <label>كلمة المرور الجديدة<input name="new_password" type="password" minlength="8" maxlength="128"
+                autocomplete="new-password" placeholder="اتركها فارغة دون تغيير"></label>
+          </div>
+          <div class="form-actions"><button class="button button-green" type="submit">حفظ بيانات الحساب</button></div>
+          <p class="message" id="accountMessage" role="status"></p>
+        </form>
+      </section>
+
       <section class="editor hidden" id="editorSection">
         <div class="editor-heading">
           <h2 id="editorTitle">إضافة منتج</h2><button id="cancelEditButton" class="icon-button" aria-label="إغلاق"><i
@@ -65,12 +82,19 @@
             <label>صورة المنتج
               <input name="image_file" type="file" accept="image/*">
             </label>
+            <label>متاح من تاريخ
+              <input name="available_from" type="date">
+            </label>
+            <label>متاح حتى تاريخ
+              <input name="available_until" type="date">
+            </label>
 
             <div id="imagePreviewContainer" hidden>
               <img id="imagePreview" alt="معاينة صورة المنتج" style="max-width: 180px; border-radius: 10px;">
             </div>
           </div>
           <label class="check-label"><input name="available" type="checkbox" checked> المنتج متاح للبيع</label>
+          <label class="check-label"><input name="is_preorder" type="checkbox"> يقبل الطلب المسبق</label>
           <div class="form-actions"><button class="button button-green" type="submit">حفظ المنتج</button><button
               class="button button-light" type="button" id="cancelEditButton2">إلغاء</button></div>
           <p class="message" id="formMessage"></p>

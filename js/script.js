@@ -64,6 +64,22 @@
     return null;
   }
 
+  function isWithinAvailability(product) {
+    var today = new Date();
+    var localDate = [
+      today.getFullYear(),
+      String(today.getMonth() + 1).padStart(2, '0'),
+      String(today.getDate()).padStart(2, '0')
+    ].join('-');
+
+    return (!product.available_from || localDate >= product.available_from) &&
+      (!product.available_until || localDate <= product.available_until);
+  }
+
+  function canOrder(product) {
+    return product.available && (product.is_preorder || isWithinAvailability(product));
+  }
+
   function toast(message) {
     var t = document.createElement('div');
 
@@ -110,14 +126,26 @@
       }
 
       // زر الإضافة
-      if (p.available) {
+      if (canOrder(p)) {
         button =
           '<button class="add" data-id="' + esc(p.id) + '">' +
-          '<i class="fa-solid fa-plus"></i> أضف' +
+          '<i class="fa-solid fa-plus"></i> ' +
+          (p.is_preorder ? 'اطلب مسبقًا' : 'أضف') +
           '</button>';
       } else {
-        button =
-          '<span class="soldout">غير متاح حاليًا</span>';
+        button = '<span class="soldout">غير متاح حاليًا</span>';
+      }
+
+      var productDetails = [];
+      if (p.is_preorder) {
+        productDetails.push('<span class="product__badge">طلب مسبق</span>');
+      }
+      if (p.available_from || p.available_until) {
+        productDetails.push(
+          '<small class="product__dates">فترة التوفر: ' +
+          esc(p.available_from || 'غير محدد') + ' - ' +
+          esc(p.available_until || 'غير محدد') + '</small>'
+        );
       }
 
       html +=
@@ -132,6 +160,7 @@
 
         '<div class="product__body">' +
         '<h3>' + esc(p.name) + '</h3>' +
+        productDetails.join(' ') +
 
         '<div class="product__foot">' +
         '<div class="price">' +
@@ -197,6 +226,12 @@
     }
 
     var id = button.dataset.id;
+    var product = findProduct(id);
+    if (!product || !canOrder(product)) {
+      toast('المنتج غير متاح للطلب حاليًا');
+      renderProducts();
+      return;
+    }
 
     if (cart[id]) {
       cart[id] = cart[id] + 1;
@@ -262,7 +297,7 @@
       product = findProduct(id);
       quantity = cart[id];
 
-      if (!product || quantity <= 0) {
+      if (!product || quantity <= 0 || !canOrder(product)) {
         continue;
       }
 
@@ -404,6 +439,7 @@
       lines.push(
         '- ' + product.name +
         ' (' + product.weight + ')' +
+        (product.is_preorder ? ' - طلب مسبق' : '') +
         ' × ' + quantity +
         ' = ' + itemTotal + ' جنيه'
       );

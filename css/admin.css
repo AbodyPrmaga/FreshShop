@@ -313,6 +313,13 @@ input:focus {
     color: #145a24
 }
 
+.product-dates {
+    display: block;
+    margin-top: 5px;
+    color: #526452;
+    font-size: 12px
+}
+
 .status {
     display: inline-block;
     font-size: 11px;

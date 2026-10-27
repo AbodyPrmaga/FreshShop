@@ -147,13 +147,25 @@ function renderProducts() {
     var status = product.available
       ? '<span class="status on">متاح</span>'
       : '<span class="status off">غير متاح</span>';
+    var productOptions = [];
+
+    if (product.is_preorder) {
+      productOptions.push('<span class="status on">طلب مسبق</span>');
+    }
+    if (product.available_from || product.available_until) {
+      productOptions.push(
+        '<span class="product-dates">فترة التوفر: ' +
+        escapeHtml(product.available_from || "بدون بداية") + " - " +
+        escapeHtml(product.available_until || "بدون نهاية") + '</span>'
+      );
+    }
 
     return '<article class="product-row">' + image +
       '<div class="product-info">' +
       '<h3>' + escapeHtml(product.name) + '</h3>' +
       '<p>' + escapeHtml(product.weight) +
       ' · <span class="product-price">' + product.price + ' جنيه</span> ' +
-      status + '</p></div>' +
+      status + ' ' + productOptions.join(" ") + '</p></div>' +
       '<div class="row-actions">' +
       '<button class="edit-button" data-action="edit" data-id="' + product.id + '">' +
       '<i class="fa-solid fa-pen"></i> تعديل</button>' +
@@ -223,6 +235,9 @@ function openEditor(product) {
     field("weight").value = product.weight;
     field("price").value = product.price;
     field("available").checked = product.available;
+    field("is_preorder").checked = product.is_preorder;
+    field("available_from").value = product.available_from || "";
+    field("available_until").value = product.available_until || "";
 
     // عرض الصورة القديمة دون محاولة وضعها داخل حقل الملفات
     if (product.image_url) {
@@ -279,7 +294,10 @@ productForm.addEventListener("submit", function (event) {
     weight: field("weight").value.trim(),
     price: Number(field("price").value),
     image_url: oldImageUrl,
-    available: field("available").checked
+    available: field("available").checked,
+    is_preorder: field("is_preorder").checked,
+    available_from: field("available_from").value || null,
+    available_until: field("available_until").value || null
   };
 
   var url = id ? "/api/admin/products/" + id : "/api/admin/products";
@@ -306,6 +324,33 @@ productForm.addEventListener("submit", function (event) {
     loadProducts();
   }).catch(function (error) {
     showMessage(formMessage, error.message);
+  });
+});
+
+document.getElementById("accountForm").addEventListener("submit", function (event) {
+  event.preventDefault();
+  var accountForm = event.target;
+  var username = accountForm.elements.namedItem("username").value.trim();
+  var newPassword = accountForm.elements.namedItem("new_password").value;
+  var message = document.getElementById("accountMessage");
+
+  if (!username && !newPassword) {
+    showMessage(message, "أدخل اسم مستخدم جديد أو كلمة مرور جديدة.");
+    return;
+  }
+
+  request("/api/admin/account", {
+    method: "PUT",
+    body: JSON.stringify({
+      current_password: accountForm.elements.namedItem("current_password").value,
+      username: username || null,
+      new_password: newPassword || null
+    })
+  }).then(function (data) {
+    showMessage(message, data.message);
+    accountForm.reset();
+  }).catch(function (error) {
+    showMessage(message, error.message);
   });
 });
 
